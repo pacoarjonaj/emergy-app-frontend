@@ -12,10 +12,8 @@ const ContactItem = ({ contact_id, name }) => {
 
 	return (
 		<Pressable 
-			onPress={() => {navigation.navigate('ContactDetailsScreen', {})}}
-			onPressIn={() => {console.log("onPressIn " + name)}}
+			onPress={() => {navigation.navigate('ContactDetailsScreen', {id: contact_id})}}
 			onLongPress={() => {console.log("onLongPress " + name)}}
-			onPressOut={() => {console.log("onPressOut " + name)}}
 			style={({pressed}) => [{backgroundColor: pressed ? '#eeeeee' : 'white'}]}
 		>
 			<View key={contact_id} style={styles.container}>

@@ -15,8 +15,6 @@ const useContacts = () => {
 
 	useEffect(() => {
 		navigation.setOptions({
-			headerLargeTitle: true,
-			headerTitle: 'Contacts',
 			headerSearchBarOptions: {
 				placeholder: 'Search',
 				onChangeText: (event) => {
@@ -25,7 +23,7 @@ const useContacts = () => {
 				hideWhenScrolling: false
 			}
 		})
-	}, [])
+	}, [navigation])
 
 	const searchFilterText = (text) => {	
 		if(text !== null) {

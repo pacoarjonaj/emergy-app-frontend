@@ -4,9 +4,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import HomeScreen from './src/screens/HomeScreen'
 import IncidentsScreen from './src/screens/IncidentsScreen'
+import ContactAddScreen from './src/screens/ContactAddScreen'
 import ContactDetailsScreen from './src/screens/ContactDetailScreen'
 import ContactListScreen from './src/screens/ContactListScreen'
-import NewContactScreen from './src/screens/NewContactScreen'
 import SettingsScreen from './src/screens/SettingsScreen'
 
 
@@ -38,9 +38,9 @@ const Stack = createNativeStackNavigator()
 function MyStack() {
 	return (
 		<Stack.Navigator initialRouteName='ConcactListScreen'>
-			<Stack.Screen name="ContactListScreen" component={ContactListScreen} />
-			<Stack.Screen name="ContactDetailsScreen" component={ContactDetailsScreen} />
-			<Stack.Screen name="NewContactScreen" component={NewContactScreen} />
+			<Stack.Screen name="ContactListScreen" component={ContactListScreen} options={{ headerStyle: {backgroundColor: 'white'}}} />
+			<Stack.Screen name="ContactDetailsScreen" component={ContactDetailsScreen} options={{headerTransparent: true, headerTitle: ''}}/>
+			<Stack.Screen name="ContactAddScreen" component={ContactAddScreen} options={{ headerTitle: 'New Contact',headerStyle: {backgroundColor: 'white'} }}/>
 		</Stack.Navigator>
 	)
 }
