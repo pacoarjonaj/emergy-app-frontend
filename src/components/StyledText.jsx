@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, StyleSheet } from 'react-native'
-import theme from '../theme'
+import theme from '../styles/theme'
 
 
 const styles = StyleSheet.create({
@@ -15,6 +15,9 @@ const styles = StyleSheet.create({
 	},
 	colorSecondary: {
 		color: theme.colors.textSecondary
+	},
+	colorWhite: {
+		color: theme.colors.white
 	},
 	xsmall: {
 		fontSize: theme.fontSizes.xsmall
@@ -57,6 +60,7 @@ export default function StyledText ({align, children, color, fontSize, fontWeigh
 		align === 'center' && styles.textAlignCenter,
 		color === 'colorPrimary' && styles.colorPrimary,
 		color === 'colorSeconadry' && styles.colorSecondary,
+		color === 'colorWhite' && styles.colorWhite,
 		fontSize === 'xsmall' && styles.xsmall,
 		fontSize === 'small' && styles.small,
 		fontSize === 'medium' && styles.medium,

@@ -1,17 +1,32 @@
 import React from 'react'
-import { View, Text } from 'react-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { Button, View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import Ionicons from '@expo/vector-icons/Ionicons'
+import StyledText from '../components/StyledText'
 
 
 const HomeScreen = () => {
 
-	const insets = useSafeAreaInsets()
+	const navigation = useNavigation()
 
 	return (
-		<View style={{ flex: 1, paddingTop: insets.top + 45, paddingLeft: 18 }}>
-			<Text>HomeScreen</Text>
+		<View style={{ flex: 1, alignItems: 'center', paddingTop:20}}>
+			<TouchableOpacity style={styles.button} onPress={() => { navigation.navigate('Report Incident') }}>
+				<Ionicons name='ios-add' size={36} color='#ffffff' />
+			</TouchableOpacity>
 		</View>
 	)
 }
+
+
+const styles = StyleSheet.create({
+	button: {
+		alignItems: 'center',
+		borderRadius: 8,
+		backgroundColor: '#b0463b',
+		paddingVertical: 20,
+		paddingHorizontal: 80
+	}
+})
 
 export default HomeScreen
