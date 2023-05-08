@@ -3,7 +3,7 @@ import { Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 
-const IncidentsScreen = () => {
+const IncidentListScreen = () => {
 
 	const insets = useSafeAreaInsets()
 
@@ -14,4 +14,4 @@ const IncidentsScreen = () => {
 	)
 }
 
-export default IncidentsScreen
+export default IncidentListScreen

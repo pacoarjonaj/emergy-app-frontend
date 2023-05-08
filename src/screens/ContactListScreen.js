@@ -1,24 +1,12 @@
 import React, { useEffect } from 'react'
 import { FlatList, Pressable, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import SeparatorItem from '../components/SeparatorItem'
 import ContactItem from '../components/ContactItem'
 import useContacts from '../hooks/useContacts'
 import { useNavigation } from '@react-navigation/native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
-
-const ItemSeparator = () => {
-	return ( 
-		<View 
-			style={{
-				height: 0.5,
-				width: '90%',
-				alignSelf: 'center',
-				backgroundColor: '#bcbcbc'
-			}} 
-		/>
-	)
-}
 
 const ContactListScreen = () => {
 
@@ -42,7 +30,7 @@ const ContactListScreen = () => {
 		<View style={{ flex: 1, paddingTop: insets.top }}>
 			<FlatList
 				data={contacts}
-				ItemSeparatorComponent={ItemSeparator}
+				ItemSeparatorComponent={SeparatorItem}
 				renderItem={({ item: contact }) => (
 								<ContactItem {...contact}/>
 							)}

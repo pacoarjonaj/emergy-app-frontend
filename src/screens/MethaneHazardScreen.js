@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const LocationScreen = () => {
+const MethaneHazardScreen = () => {
   return (
 	<View>
-	  <Text>LocationScreen</Text>
+	  <Text>HazardsScreen</Text>
 	</View>
   )
 }
 
-export default LocationScreen
+export default MethaneHazardScreen

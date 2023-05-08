@@ -3,7 +3,7 @@ import { View, Text } from 'react-native'
 
 
 
-const AccessScreen = () => {
+const MethaneAccessScreen = () => {
 
   return (
 	<View>
@@ -12,4 +12,4 @@ const AccessScreen = () => {
   )
 }
 
-export default AccessScreen
+export default MethaneAccessScreen

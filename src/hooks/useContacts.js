@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import contacts from '../../contacts'
+import contacts from '../data/contacts'
 
 
 const useContacts = () => {

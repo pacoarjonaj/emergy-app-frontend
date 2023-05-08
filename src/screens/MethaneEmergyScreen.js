@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const EmergencyServScreen = () => {
+const MethaneEmergyScreen = () => {
   return (
 	<View>
 	  <Text>EmergencyServScreen</Text>
@@ -9,4 +9,4 @@ const EmergencyServScreen = () => {
   )
 }
 
-export default EmergencyServScreen
+export default MethaneEmergyScreen

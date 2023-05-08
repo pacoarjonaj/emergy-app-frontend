@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from '@expo/vector-icons/Ionicons'
-import IncidentsScreen from '../screens/IncidentsScreen'
+import IncidentListScreen from '../screens/IncidentListScreen'
 import SettingsScreen from '../screens/SettingsScreen'
 import MyNativeStackHome from './NativeStackHome'
 import MyNativeStackContacts from './NativeStackContacts'
@@ -42,7 +42,7 @@ export default function MyTabs() {
 			})}
 		>
 			<Tab.Screen name="Home" component={MyNativeStackHome} options={{headerShown: false}}/>
-			<Tab.Screen name="Incidents" component={IncidentsScreen} />
+			<Tab.Screen name="Incidents" component={IncidentListScreen} />
 			<Tab.Screen name="Contacts" component={MyNativeStackContacts} options={{headerShown: false}}/>
 			<Tab.Screen name="Settings" component={SettingsScreen} />
 		</Tab.Navigator>	
