@@ -3,7 +3,8 @@ import theme from "../styles/theme"
 export default [
 	{
 		title: "Major Incident",
-		icon: "M", color: theme.colors.red,
+		icon: "M", 
+		color: theme.colors.red,
 		screen: "Major Incident"
 	},
 	{
@@ -30,10 +31,11 @@ export default [
 		color: theme.colors.orange, 
 		screen: "Access to Scene" 
 	},
-	{ title: "Number and Severity", 
-	icon: "N", 
-	color: theme.colors.gray, 
-	screen: "Number and Severity" 
+	{ 
+		title: "Number and Severity", 
+		icon: "N", 
+		color: theme.colors.gray, 
+		screen: "Number and Severity" 
 	},
 	{ 
 		title: "Emergy Services", 

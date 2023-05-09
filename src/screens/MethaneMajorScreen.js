@@ -3,7 +3,7 @@ import theme from '../styles/theme'
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native'
 import RNDateTimePicker from '@react-native-community/datetimepicker'
 import { changeDeclaration } from '../redux/methaneSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import StyledText from '../components/StyledText'
 
 
@@ -11,6 +11,7 @@ import StyledText from '../components/StyledText'
 const MethaneMajorScreen = () => {
 
 	const [pickedDate, setPickedDate] = useState(new Date())
+	const isMajor = useSelector((state) => state.methane.isMajor)
 	const dispatch = useDispatch()
 
 
@@ -19,9 +20,10 @@ const MethaneMajorScreen = () => {
 	}
 
 	const handlePress = () => {
-		dispatch(changeDeclaration({"date": pickedDate.toString(), "isMayor": true}))
+		dispatch(changeDeclaration({"date": pickedDate.toString(), "isMajor": true}))
 	}
 
+	const buttonStyle = isMajor ? styles.pressedButton : styles.button
 
 	return (
 		<ScrollView>
@@ -44,11 +46,9 @@ const MethaneMajorScreen = () => {
 				<Pressable
 					onPress={() => handlePress()}
 				>
-					{({pressed}) => (
-						<View style={styles.button}>
-							<StyledText fontSize='xlarge' fontWeight='medium' color='colorWhite'>Major Incident DECLARED</StyledText>
-						</View>
-					)}
+					<View style={buttonStyle}>
+						<StyledText fontSize='xlarge' fontWeight='medium' color='colorWhite'>Major Incident DECLARED</StyledText>
+					</View>
 				</Pressable>
 
 				<View>
@@ -78,7 +78,14 @@ const styles = StyleSheet.create({
 		borderRadius: 8, 
 		padding: 12, 
 		marginVertical: 18
-	}
+	},
+	pressedButton: {
+		backgroundColor: theme.colors.green, 
+		borderRadius: 8, 
+		padding: 12, 
+		marginVertical: 18
+	},
+
 })
 
 export default MethaneMajorScreen

@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, Pressable } from 'react-native'
 import { Animated } from 'react-native-maps'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { changeLocation } from '../redux/methaneSlice'
 import theme from '../styles/theme'
 import StyledText from '../components/StyledText'
@@ -11,8 +11,10 @@ import useCurrentLocation from '../hooks/useCurrentLocation'
 const MethaneLocationScreen = () => {
 
 	const currentLocation = useCurrentLocation()
+	const street = useSelector((state) => state.methane.street)
 	const dispatch = useDispatch()
 
+	const buttonStyle = street ? styles.pressedButton : styles.button
 
 	return (
 		<View style={styles.container}>
@@ -34,7 +36,7 @@ const MethaneLocationScreen = () => {
 			?  	<View style={{flexDirection: 'column'}}>
 					<View style={{alignItems: 'center', paddingVertical: 10}}>
 						<Pressable
-							style={styles.button}
+							style={buttonStyle}
 							onPress={(event) => dispatch(changeLocation(currentLocation)) }
 						>
 							<StyledText color='colorWhite' fontSize='large' fontWeight='medium'>OK</StyledText>
@@ -72,6 +74,11 @@ const styles= StyleSheet.create({
 	},
 	button: {
 		backgroundColor: theme.colors.red,
+		borderRadius: 8,
+		padding: 6,
+	},
+	pressedButton: {
+		backgroundColor: theme.colors.green,
 		borderRadius: 8,
 		padding: 6,
 	}

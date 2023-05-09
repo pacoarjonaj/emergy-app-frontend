@@ -2,12 +2,14 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
 	date: null,
-	isMayor: false,
+	isMajor: false,
 	street: null,
 	streetNumber: null,
 	postalCode: null,
 	city: null,
-	country: null
+	country: null,
+	type: null,
+	hazard: null
 };
 
 export const methaneSlice = createSlice({
@@ -15,9 +17,9 @@ export const methaneSlice = createSlice({
 	initialState,
 	reducers: {
 		changeDeclaration: (state, action) => {
-			const { date, isMayor } = action.payload
+			const { date, isMajor } = action.payload
 			state.date = date;
-			state.isMayor = isMayor;
+			state.isMajor = isMajor;
 
 			console.log(state)
 		},
@@ -30,10 +32,22 @@ export const methaneSlice = createSlice({
 			state.country = country;
 
 			console.log(state)
+		},
+		changeType: (state, action) => {
+			const type = action.payload
+			state.type = type
+		
+			console.log(state)
+		},
+		changeHazard: (state, action) => {
+			const hazard = action.payload
+			state.hazard = hazard
+
+			console.log(state)
 		}
 	}
 })
 
 
-export const { changeDeclaration, changeLocation } = methaneSlice.actions;
+export const { changeDeclaration, changeHazard, changeLocation, changeType } = methaneSlice.actions;
 export default methaneSlice.reducer;
