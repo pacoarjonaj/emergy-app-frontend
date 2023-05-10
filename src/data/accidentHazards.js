@@ -1,5 +1,5 @@
 export default [
-	{ key: 0, label: 'Acces' },
+	{ key: 0, label: 'Access' },
 	{ key: 1, label: 'Animal hazard to traffic' },
 	{ key: 2, label: 'Building / Structure collapse' },
 	{ key: 3, label: 'Building under construction'},

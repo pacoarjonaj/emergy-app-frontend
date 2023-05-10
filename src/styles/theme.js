@@ -54,7 +54,7 @@ const theme = {
 	viewMethane: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		paddingVertical: 20,
+		paddingVertical: 15,
 		paddingHorizontal: 20
 	}
 }

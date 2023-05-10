@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import theme from '../styles/theme'
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native'
 import RNDateTimePicker from '@react-native-community/datetimepicker'
@@ -14,7 +14,6 @@ const MethaneMajorScreen = () => {
 	const isMajor = useSelector((state) => state.methane.isMajor)
 	const dispatch = useDispatch()
 
-
 	const onChange = (event, date) => {
 		setPickedDate(date || pickedDate);
 	}
@@ -27,8 +26,8 @@ const MethaneMajorScreen = () => {
 
 	return (
 		<ScrollView>
-			<View style={{flexDirection: 'column', alignItems: 'center', paddingTop: 6}}>
-				<View>
+			<View style={styles.container}>
+				<View style={{paddingTop: 10}}>
 					<StyledText>A major incident is defined as:</StyledText>
 				</View>
 
@@ -73,6 +72,12 @@ const MethaneMajorScreen = () => {
 }
 
 const styles = StyleSheet.create({
+	container: {
+		flexDirection: 'column', 
+		alignItems: 'center', 
+		paddingTop: 6,
+		paddingHorizontal: 4
+	},
 	button: {
 		backgroundColor: theme.colors.red, 
 		borderRadius: 8, 

@@ -29,14 +29,4 @@ const MethaneItem = ({title, icon, color, screen}) => {
 	)
 }
 
-const styles = StyleSheet.create({
-	square: {
-		width: 60,
-   	 	height: 60,
-    	alignItems: 'center',
-    	justifyContent: 'center',
-		borderRadius: 8
-	}
-})
-
 export default MethaneItem
