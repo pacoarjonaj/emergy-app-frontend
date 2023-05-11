@@ -14,7 +14,11 @@ const initialState = {
 	casualtiesDescription: null,
 	adults: 0,
 	children: 0,
-	fatalities: 0
+	fatalities: 0,
+	servicesDescription: null,
+	sanitary: 0,
+	firefighting: 0,
+	rescue: 0,
 };
 
 export const methaneSlice = createSlice({
@@ -56,6 +60,15 @@ export const methaneSlice = createSlice({
 
 			console.log(state)
 		},
+		changeService: (state, action) => {
+			const { servicesDescription, sanitary, firefighting, rescue } = action.payload
+			state.servicesDescription = servicesDescription
+			state.sanitary = sanitary
+			state.firefighting = firefighting
+			state.rescue = rescue
+
+			console.log(state)
+		},
 		changeSeverity: (state, action) => {
 			const { casualtiesDescription, adults, children, fatalities } = action.payload
 			state.casualtiesDescription = casualtiesDescription
@@ -70,5 +83,5 @@ export const methaneSlice = createSlice({
 })
 
 
-export const { changeAccess, changeDeclaration, changeHazard, changeLocation, changeSeverity, changeType, resetState } = methaneSlice.actions;
+export const { changeAccess, changeDeclaration, changeHazard, changeLocation, changeService, changeSeverity, changeType, resetState } = methaneSlice.actions;
 export default methaneSlice.reducer;

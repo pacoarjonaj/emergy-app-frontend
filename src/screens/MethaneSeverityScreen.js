@@ -82,5 +82,4 @@ const MethaneSeverityScreen = () => {
 	)
 }
 
-
 export default MethaneSeverityScreen
