@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Pressable } from 'react-native'
+import { View, Pressable } from 'react-native'
 import ModalSelector from 'react-native-modal-selector'
-import theme from '../styles/theme'
 import { changeType } from '../redux/methaneSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import componentStyles from '../styles/componentStyles'
 import StyledText from '../components/StyledText'
 import accidentTypes from '../data/accidentTypes'
 
@@ -15,10 +15,10 @@ const MethaneTypeScreen = () => {
 	const type = useSelector((state) => state.methane.type)
 	const dispatch = useDispatch()
 
-	const buttonStyle = type ? styles.pressedButton : styles.button
+	const buttonStyle = type ? componentStyles.pressedButton : componentStyles.button
 	
 	return (
-		<View style={styles.container}>
+		<View style={{ justifyContent: 'space-around', ...componentStyles.container}}>
 			<View style={{  alignItems: 'center' }}>
 				<View>
 					<StyledText>Select an option from list below: </StyledText>
@@ -60,27 +60,6 @@ const MethaneTypeScreen = () => {
 		</View>
 	)
 }
-
-const styles= StyleSheet.create({
-	container: {
-		flexDirection: 'column', 
-		flex: 1,
-		alignItems: 'center', 
-		justifyContent: 'space-around',
-		paddingTop: 6,
-		paddingHorizontal: 4
-	},
-	button: {
-		backgroundColor: theme.colors.red,
-		borderRadius: 8,
-		padding: 6,
-	},
-	pressedButton: {
-		backgroundColor: theme.colors.green,
-		borderRadius: 8,
-		padding: 6,
-	}
-})
 
 
 export default MethaneTypeScreen

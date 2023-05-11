@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { FlatList, Pressable, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { useNavigation } from '@react-navigation/native'
+import Ionicons from '@expo/vector-icons/Ionicons'
 import SeparatorItem from '../components/SeparatorItem'
 import ContactItem from '../components/ContactItem'
 import useContacts from '../hooks/useContacts'
-import { useNavigation } from '@react-navigation/native'
-import Ionicons from '@expo/vector-icons/Ionicons'
 
 
 const ContactListScreen = () => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import StyledText from '../components/StyledText'

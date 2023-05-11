@@ -1,17 +1,13 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
+import componentStyles from '../styles/componentStyles'
 
 
 const SeparatorItem = () => {
 
 		return ( 
 			<View 
-				style={{
-					height: 0.5,
-					width: '90%',
-					alignSelf: 'center',
-					backgroundColor: '#bcbcbc'
-				}} 
+				style={componentStyles.separator} 
 			/>
 		)
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Image, StyleSheet, View } from 'react-native'
-import StyledText from '../components/StyledText'
-import { useRoute } from '@react-navigation/native'
-import contacts from '../data/contacts'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { useRoute } from '@react-navigation/native'
+import StyledText from '../components/StyledText'
+import contacts from '../data/contacts'
 
 
 const ContactDetailScreen = () => {

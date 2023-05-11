@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Pressable } from 'react-native'
+import { View, Pressable } from 'react-native'
 import ModalSelector from 'react-native-modal-selector'
-import theme from '../styles/theme'
 import { changeHazard } from '../redux/methaneSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import componentStyles from '../styles/componentStyles'
 import StyledText from '../components/StyledText'
 import accidentHazards from '../data/accidentHazards'
 
@@ -15,11 +15,11 @@ const MethaneHazardScreen = () => {
 	const hazard = useSelector((state) => state.methane.hazard)
 	const dispatch = useDispatch()
 
-	const buttonStyle = hazard ? styles.pressedButton : styles.button
+	const buttonStyle = hazard ? componentStyles.pressedButton : componentStyles.button
 
 
 	return (
-		<View style={styles.container}>
+		<View style={{ justifyContent: 'space-around', ...componentStyles.container}}>
 
 			<View style={{  alignItems: 'center' }}>
 				<View>
@@ -58,25 +58,5 @@ const MethaneHazardScreen = () => {
 	)
 }
 
-const styles= StyleSheet.create({
-	container: {
-		flexDirection: 'column', 
-		flex: 1,
-		alignItems: 'center', 
-		justifyContent: 'space-around',
-		paddingTop: 6,
-		paddingHorizontal: 4
-	},
-	button: {
-		backgroundColor: theme.colors.red,
-		borderRadius: 8,
-		padding: 6,
-	},
-	pressedButton: {
-		backgroundColor: theme.colors.green,
-		borderRadius: 8,
-		padding: 6,
-	}
-})
 
 export default MethaneHazardScreen

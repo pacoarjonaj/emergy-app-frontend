@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { Pressable, StyleSheet, TextInput, View } from 'react-native'
-import InputSpinner from 'react-native-input-spinner'
+import { Pressable, TextInput, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeSeverity } from '../redux/methaneSlice'
-import theme from '../styles/theme'
 import InputSpinnerItem from '../components/InputSpinnerItem'
 import StyledText from '../components/StyledText'
+import componentStyles from '../styles/componentStyles'
 
 
 const MethaneSeverityScreen = () => {
@@ -38,10 +37,10 @@ const MethaneSeverityScreen = () => {
 		
 	}
 
-	const buttonStyle = (casualtiesDescription || adults || children || fatalities) ? styles.pressedButton : styles.button
+	const buttonStyle = (casualtiesDescription || adults || children || fatalities) ? componentStyles.pressedButton : componentStyles.button
 
 	return (
-		<View style={styles.container}>
+		<View style={componentStyles.container}>
 
 			<View style={{paddingTop: 10}}>
 				<StyledText>Determine the number of casualties and if possible the level and severity of injuries:</StyledText>
@@ -49,7 +48,7 @@ const MethaneSeverityScreen = () => {
 			
 			<View style={{width: '90%'}}>
 				<TextInput 
-					style={styles.input}
+					style={componentStyles.input}
 					onChangeText={setDescription}
 					value={description}
 					multiline={true}
@@ -57,29 +56,18 @@ const MethaneSeverityScreen = () => {
 				/>
 			</View>
 
-			<View style={styles.conainerIputSpinner}>
-				<View style={styles.labelSpinner}>
-					<StyledText>Adults:</StyledText>
-				</View>
-
-				<InputSpinner label={'Adults'} value={adults} onChange={setAdultsNum}/>
+			<View style={{ alignItems: 'center'}}>
+				<InputSpinnerItem label='Adults' value={adults} onChange={setAdultsNum}/>
 			</View>
 			
-			<View style={styles.conainerIputSpinner}>
-				<View style={styles.labelSpinner}>
-					<StyledText>Children:</StyledText>
-				</View>
-
-				<InputSpinner value={children} onChange={setChildrenNum}/>
+			<View style={{ alignItems: 'center'}}>
+				<InputSpinnerItem label='Children' value={children} onChange={setChildrenNum}/>
+			</View>
+			
+			<View style={{ alignItems: 'center'}}>
+				<InputSpinnerItem label='Fatalities' value={fatalities} onChange={setFatalitiesNum}/>
 			</View>
 
-			<View style={styles.conainerIputSpinner}>
-				<View style={styles.labelSpinner}>
-					<StyledText>Fatalities:</StyledText>
-				</View>
-
-				<InputSpinner value={fatalities} onChange={setFatalitiesNum}/>
-			</View>
 
 			<View style={{alignItems: 'center', paddingVertical: 20 }}>
 				<Pressable
@@ -94,41 +82,5 @@ const MethaneSeverityScreen = () => {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flexDirection: 'column', 
-		alignItems: 'center', 
-		paddingTop: 6,
-		paddingHorizontal: 4
-	},
-	conainerIputSpinner: {
-		flexDirection: 'row', 
-		alignItems: 'center',
-		justifyContent: 'center', 
-		paddingBottom: 15,
-		width: '30%'
-	},
-	labelSpinner: {
-		width: 90, 
-		paddingRight: 20
-	},
-	button: {
-		backgroundColor: theme.colors.red,
-		borderRadius: 8,
-		padding: 6,
-	},
-	pressedButton: {
-		backgroundColor: theme.colors.green,
-		borderRadius: 8,
-		padding: 6,
-	},
-	input: {
-		height: 80,
-		textAlignVertical: 'top',
-		margin: 12,
-		borderWidth: 1,
-		padding: 10
-	}
-})
 
 export default MethaneSeverityScreen

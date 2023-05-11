@@ -1,9 +1,9 @@
 import React from 'react'
-import { View, StyleSheet, Pressable } from 'react-native'
+import { View, Pressable } from 'react-native'
 import { Animated } from 'react-native-maps'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeLocation } from '../redux/methaneSlice'
-import theme from '../styles/theme'
+import componentStyles from '../styles/componentStyles'
 import StyledText from '../components/StyledText'
 import useCurrentLocation from '../hooks/useCurrentLocation'
 
@@ -14,10 +14,10 @@ const MethaneLocationScreen = () => {
 	const street = useSelector((state) => state.methane.street)
 	const dispatch = useDispatch()
 
-	const buttonStyle = street ? styles.pressedButton : styles.button
+	const buttonStyle = street ? componentStyles.pressedButton : componentStyles.button
 
 	return (
-		<View style={styles.container}>
+		<View style={componentStyles.container}>
 			<View style={{paddingTop: 10}}>
 				<StyledText>Your current location:</StyledText>
 			</View>
@@ -29,7 +29,7 @@ const MethaneLocationScreen = () => {
 			<Animated
 				showsUserLocation={true}
 				followsUserLocation={true}
-				style={styles.map}
+				style={componentStyles.map}
 			/>
 
 			{currentLocation 
@@ -61,27 +61,5 @@ const MethaneLocationScreen = () => {
 	)
 }
 
-const styles= StyleSheet.create({
-	container: {
-		flexDirection: 'column', 
-		alignItems: 'center', 
-		paddingTop: 6,
-		paddingHorizontal: 4
-	},
-	map: {
-		width: '90%',
-		height: '70%'
-	},
-	button: {
-		backgroundColor: theme.colors.red,
-		borderRadius: 8,
-		padding: 6,
-	},
-	pressedButton: {
-		backgroundColor: theme.colors.green,
-		borderRadius: 8,
-		padding: 6,
-	}
-})
 
 export default MethaneLocationScreen

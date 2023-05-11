@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
-import StyledText from './StyledText'
 import { useNavigation } from '@react-navigation/native'
+import StyledText from './StyledText'
 
 
 

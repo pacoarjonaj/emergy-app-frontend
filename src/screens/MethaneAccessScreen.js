@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { KeyboardAvoidingView, Platform, Pressable, StyleSheet, TextInput, View } from 'react-native'
+import { Pressable, TextInput, View } from 'react-native'
 import * as Location from 'expo-location'
 import { Animated } from 'react-native-maps'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeAccess } from '../redux/methaneSlice'
 import StyledText from '../components/StyledText'
-import theme from '../styles/theme'
+import componentStyles from '../styles/componentStyles'
 
 
 const MethaneAccessScreen = () => {
@@ -14,7 +14,7 @@ const MethaneAccessScreen = () => {
 	const access =  useSelector((state) => state.methane.access)
 	const dispatch = useDispatch()
 
-	const buttonStyle = access ? styles.pressedButton : styles.button
+	const buttonStyle = access ? componentStyles.pressedButton : componentStyles.button
 
 	useEffect(() => {
 		const getPermissions = async () => {
@@ -30,7 +30,7 @@ const MethaneAccessScreen = () => {
 	}, [])
 
 	return (
-		<View style={styles.container}>
+		<View style={componentStyles.container}>
 			<View style={{paddingTop: 10}}>
 				<StyledText>Your current location:</StyledText>
 			</View>
@@ -41,7 +41,7 @@ const MethaneAccessScreen = () => {
 
 			<View style={{width: '90%'}}>
 				<TextInput 
-					style={styles.input}
+					style={componentStyles.input}
 					onChangeText={setDescription}
 					value={description}
 					multiline={true}
@@ -61,41 +61,12 @@ const MethaneAccessScreen = () => {
 			<Animated
 				showsUserLocation={true}
 				followsUserLocation={true}
-				style={styles.map}
+				style={componentStyles.map}
 			/>
 
 		</View>
 	)
 }
 
-const styles= StyleSheet.create({
-	container: {
-		flexDirection: 'column', 
-		alignItems: 'center', 
-		paddingTop: 6,
-		paddingHorizontal: 4
-	},
-	map: {
-		width: '90%',
-		height: '60%'
-	},
-	button: {
-		backgroundColor: theme.colors.red,
-		borderRadius: 8,
-		padding: 6,
-	},
-	pressedButton: {
-		backgroundColor: theme.colors.green,
-		borderRadius: 8,
-		padding: 6,
-	},
-	input: {
-		height: 80,
-		textAlignVertical: 'top',
-		margin: 12,
-		borderWidth: 1,
-		padding: 10
-	}
-})
 
 export default MethaneAccessScreen

@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react'
-import theme from '../styles/theme'
-import infoMethane from '../data/infoMethane'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { FlatList, Pressable, StyleSheet, View } from 'react-native'
-import { useDispatch } from 'react-redux'
+import { useNavigation } from '@react-navigation/native'
+import { useDispatch, useSelector } from 'react-redux'
 import { resetState } from '../redux/methaneSlice'
+import componentStyles from '../styles/componentStyles'
+import infoMethane from '../data/infoMethane'
 import MethaneItem from '../components/MethaneItem'
 import SeparatorItem from '../components/SeparatorItem'
 import StyledText from '../components/StyledText'
-import { useNavigation } from '@react-navigation/native'
 
 
 const MethaneScreen = () => {
 
 	const navigation = useNavigation()
+	const state = useSelector(state => state)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -26,10 +27,16 @@ const MethaneScreen = () => {
 		})
 	}, [navigation])
 
+	const onPress = () => {
+		console.log('STATE ENVIADO: ')
+		console.log(state)
+		alert('Report sent!')
+		dispatch(resetState())
+	}
 
 	return (
 
-			<View style={styles.container}>
+			<View style={ componentStyles.methaneContainer }>
 				<FlatList
 					data={infoMethane}
 					ItemSeparatorComponent={SeparatorItem}
@@ -37,13 +44,10 @@ const MethaneScreen = () => {
 									<MethaneItem {...methane}/>
 								)}
 					ListFooterComponent={(
-						<View style={styles.buttonContainer}>
+						<View style={componentStyles.buttonContainer}>
 							<Pressable
-									style={styles.button}
-									onPress={(event) => {
-										dispatch(resetState())
-										alert('Report sent!')
-									}}
+									style={componentStyles.button}
+									onPress={(event) => onPress()}
 								>
 								<StyledText color='colorWhite' fontSize='large' fontWeight='medium'>SEND INCIDENT</StyledText>
 							</Pressable>
@@ -53,30 +57,6 @@ const MethaneScreen = () => {
 			</View>
 	)
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1, 
-		flexDirection: 'column', 
-		alignContent: 'center'
-	},
-	buttonContainer: {
-		bottom: 0,
-		width: '100%',
-		alignItems: 'center',
-		paddingVertical: 15
-	},
-	button: {
-		backgroundColor: theme.colors.red,
-		borderRadius: 8,
-		padding: 6,
-	},
-	pressedButton: {
-		backgroundColor: theme.colors.green,
-		borderRadius: 8,
-		padding: 6,
-	}
-})
 
 
 export default MethaneScreen
