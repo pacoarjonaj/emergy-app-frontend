@@ -6,7 +6,7 @@ import contacts from '../data/contacts'
 const useContacts = () => {
 
 	const navigation = useNavigation()
-	const [contactList, setContactList] = useState(contacts)
+	const contactList = contacts
 	const [filteredContactList, setFilteredContactList] = useState(contacts)
 
 	function sortListAlphabetically(list) {

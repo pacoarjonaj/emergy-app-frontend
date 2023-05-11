@@ -9,7 +9,6 @@ const ContactItem = ({ contact_id, name }) => {
 
 	const navigation = useNavigation()
 
-
 	return (
 		<Pressable 
 			onPress={() => {navigation.navigate('ContactDetailsScreen', {id: contact_id})}}

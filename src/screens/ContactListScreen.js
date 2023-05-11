@@ -32,7 +32,7 @@ const ContactListScreen = () => {
 				data={contacts}
 				ItemSeparatorComponent={SeparatorItem}
 				renderItem={({ item: contact }) => (
-								<ContactItem {...contact}/>
+								<ContactItem {...contact} />
 							)}
 				contentInsetAdjustmentBehavior='automatic'
 			/>

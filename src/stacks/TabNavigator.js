@@ -4,6 +4,7 @@ import IncidentListScreen from '../screens/IncidentListScreen'
 import SettingsScreen from '../screens/SettingsScreen'
 import MyNativeStackHome from './NativeStackHome'
 import MyNativeStackContacts from './NativeStackContacts'
+import MyNativeStackIncidents from './NativeStackIncidents'
 
 
 const tabScreenOptions = {
@@ -41,9 +42,9 @@ export default function MyTabs() {
 				...tabScreenOptions
 			})}
 		>
-			<Tab.Screen name="Home" component={MyNativeStackHome} options={{headerShown: false}}/>
-			<Tab.Screen name="Incidents" component={IncidentListScreen} />
-			<Tab.Screen name="Contacts" component={MyNativeStackContacts} options={{headerShown: false}}/>
+			<Tab.Screen name="Home" component={MyNativeStackHome} options={{headerShown: false}} />
+			<Tab.Screen name="Incidents" component={MyNativeStackIncidents} options={{headerShown: false}} />
+			<Tab.Screen name="Contacts" component={MyNativeStackContacts} options={{headerShown: false}} />
 			<Tab.Screen name="Settings" component={SettingsScreen} />
 		</Tab.Navigator>	
 	)

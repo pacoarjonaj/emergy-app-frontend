@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons'
-import { FlatList, Pressable, StyleSheet, View } from 'react-native'
+import { FlatList, Pressable, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
-import { resetState } from '../redux/methaneSlice'
+import { changeDeclaration, resetState } from '../redux/methaneSlice'
 import componentStyles from '../styles/componentStyles'
 import infoMethane from '../data/infoMethane'
 import MethaneItem from '../components/MethaneItem'
@@ -25,11 +25,14 @@ const MethaneScreen = () => {
 				</Pressable>
 			)
 		})
+
 	}, [navigation])
 
-	const onPress = () => {
+	const onPress = () => { 
+		// En el POST hay que comprobar que si date === null es new Date()
 		console.log('STATE ENVIADO: ')
 		console.log(state)
+
 		alert('Report sent!')
 		dispatch(resetState())
 	}

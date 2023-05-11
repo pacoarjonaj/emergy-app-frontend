@@ -1,5 +1,6 @@
 export default [
-	{
+	{	
+		incident_id: 0,
 		date: 'Fri Oct 22 2021 09:15:00 GMT-0400',
 		isMajor: true,
 		street: 'Oak Street',
@@ -13,9 +14,11 @@ export default [
 		casualtiesDescription: 'Several injured',
 		adults: 3,
 		children: 1,
-		fatalities: 0
+		fatalities: 0,
+		user_id: 1
 	  },
 	  {
+		incident_id: 1,
 		date: 'Sat Mar 05 2022 11:30:00 GMT-0500',
 		isMajor: false,
 		street: 'Cherry Street',
@@ -29,9 +32,11 @@ export default [
 		casualtiesDescription: 'No serious injuries',
 		adults: 2,
 		children: 0,
-		fatalities: 0
+		fatalities: 0,
+		user_id: 1
 	  },
 	  {
+		incident_id: 2,
 		date: 'Mon Aug 16 2022 15:10:00 GMT-0400',
 		isMajor: true,
 		street: 'Elm Street',
@@ -45,9 +50,11 @@ export default [
 		casualtiesDescription: 'Several casualties',
 		adults: 6,
 		children: 2,
-		fatalities: 1
+		fatalities: 1,
+		user_id: 1
 	  },
 	  {
+		incident_id: 3,
 		date: 'Sun Nov 14 2021 18:45:00 GMT-0400',
 		isMajor: false,
 		street: 'Main Street',
@@ -61,9 +68,11 @@ export default [
 		casualtiesDescription: 'One person treated',
 		adults: 1,
 		children: 0,
-		fatalities: 0
+		fatalities: 0,
+		user_id: 1
 	  },
 	  {
+		incident_id: 4,
 		date: 'Tue Dec 28 2021 14:20:00 GMT-0500',
 		isMajor: false,
 		street: 'La Rambla',
@@ -77,9 +86,11 @@ export default [
 		casualtiesDescription: 'No injuries',
 		adults: 0,
 		children: 0,
-		fatalities: 0
+		fatalities: 0,
+		user_id: 1
 	  },
 	  {
+		incident_id: 5,
 		date: 'Thu Apr 28 2022 08:00:00 GMT-0500',
 		isMajor: true,
 		street: 'Broadway',
@@ -93,9 +104,11 @@ export default [
 		casualtiesDescription: 'Multiple casualties',
 		adults: 7,
 		children: 2,
-		fatalities: 3
+		fatalities: 3,
+		user_id: 1
 	  },
 	  {
+		incident_id: 6,
 		date: 'Fri May 12 2023 11:32:44 GMT+0200',
 		isMajor: false,
 		street: 'Broadway',
@@ -109,9 +122,11 @@ export default [
 		casualtiesDescription: 'Several people injured',
 		adults: 3,
 		children: 2,
-		fatalities: 0
+		fatalities: 0,
+		user_id: 1
 	  },
 	  {
+		incident_id: 7,
 		date: 'Fri May 12 2023 14:12:19 GMT+0200',
 		isMajor: false,
 		street: 'Rue de la Liberté',
@@ -125,9 +140,11 @@ export default [
 		casualtiesDescription: 'One person injured',
 		adults: 1,
 		children: 0,
-		fatalities: 0
+		fatalities: 0,
+		user_id: 1
 	  },
 	  {
+		incident_id: 8,
 		date: 'Sat May 13 2023 08:57:36 GMT+0200',
 		isMajor: true,
 		street: 'King Abdulaziz Road',
@@ -141,9 +158,11 @@ export default [
 		casualtiesDescription: 'Multiple fatalities and injuries',
 		adults: 5,
 		children: 3,
-		fatalities: 10
+		fatalities: 10,
+		user_id: 1
 	  },
 	  {
+		incident_id: 9,
 		date: 'Sat May 13 2023 16:23:59 GMT+0200',
 		isMajor: false,
 		street: 'Rua Augusta',
@@ -157,9 +176,11 @@ export default [
 		casualtiesDescription: 'No injuries or fatalities',
 		adults: 0,
 		children: 0,
-		fatalities: 0
+		fatalities: 0,
+		user_id: 1
 	  },
 	  {
+		incident_id: 10,
 		date: 'Sun May 14 2023 19:10:28 GMT+0200',
 		isMajor: false,
 		street: 'Miraikan',
@@ -173,9 +194,11 @@ export default [
 		casualtiesDescription: 'One person injured',
 		adults: 1,
 		children: 0,
-		fatalities: 0
+		fatalities: 0,
+		user_id: 1
 	  },
 	  {
+		incident_id: 11,
 		date: 'Mon May 15 2023 13:47:51 GMT+0200',
 		isMajor: true,
 		street: 'Via Nazionale',
@@ -189,9 +212,11 @@ export default [
 		casualtiesDescription: 'Multiple fatalities and injuries',
 		adults: 7,
 		children: 4,
-		fatalities: 8
+		fatalities: 8,
+		user_id: 1
 	  },
 	  {
+		incident_id: 12,
 		date: 'Sat Jul 15 2023 06:30:00 GMT+0200',
 		isMajor: false,
 		street: 'Baker Street',
@@ -205,9 +230,11 @@ export default [
 		casualtiesDescription: 'Multiple people injured, some with serious burns',
 		adults: 5,
 		children: 3,
-		fatalities: 0
+		fatalities: 0,
+		user_id: 1
 	},
 	{
+		incident_id: 13,
 		date: 'Tue Sep 05 2023 18:12:30 GMT+0200',
 		isMajor: true,
 		street: 'Avenida Presidente Vargas',
@@ -221,9 +248,11 @@ export default [
 		casualtiesDescription: 'Several people trapped under debris',
 		adults: 10,
 		children: 2,
-		fatalities: 2
+		fatalities: 2,
+		user_id: 1
 	},
 	{
+		incident_id: 14,
 		date: 'Fri Dec 01 2023 21:45:00 GMT+0200',
 		isMajor: false,
 		street: 'Rue de Rivoli',
@@ -237,9 +266,11 @@ export default [
 		casualtiesDescription: 'Few people complaining of breathing difficulties',
 		adults: 2,
 		children: 1,
-		fatalities: 0
+		fatalities: 0,
+		user_id: 1
 	},
 	{
+		incident_id: 15,
 		date: 'Sun Feb 26 2023 17:20:00 GMT+0100',
 		isMajor: false,
 		street: 'Piazza del Popolo',
@@ -253,6 +284,7 @@ export default [
 		casualtiesDescription: 'Two cars involved, minor injuries reported',
 		adults: 2,
 		children: 0,
-		fatalities: 0
+		fatalities: 0,
+		user_id: 1
 	}
 ]
