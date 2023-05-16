@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { View, ScrollView } from 'react-native'
+import { Auth } from 'aws-amplify'
 import { useNavigation } from '@react-navigation/native'
+import { useForm } from 'react-hook-form'
 import componentStyles from '../styles/componentStyles'
 import CustomInput from '../components/CustomInput'
 import CustomButton from '../components/CustomButton'
@@ -9,13 +11,15 @@ import CustomButton from '../components/CustomButton'
 const NewPasswordScreen = () => {
 
 	const navigation = useNavigation()
+	const { control, handleSubmit, watch } = useForm()
 
-	const [code, setCode] = useState('')
-	const [newPassword, setNewPassword] = useState('')
-
-
-	const onSubmitPressed = () => {
-		navigation.navigate('Your Account')
+	const onSubmitPressed = async (data) => {
+		try {
+			await Auth.forgotPasswordSubmit(data.username, data.code, data.password)
+			navigation.navigate('Sign In')
+		}catch(error) {
+			alert(error)
+		}
 	}
 
 	const onSignInPressed = () => {
@@ -26,20 +30,37 @@ const NewPasswordScreen = () => {
 		<ScrollView showsVerticalScrollIndicator={false}>
 
 			<View style={componentStyles.container}>
+
 				<CustomInput 
+					name='username'
+					placeholder='Email'
+					control={control}
+					rules={{ required: 'Email is required' }}
+					keyboardType='email-address'
+				/>
+
+				<CustomInput 
+					name='code'
 					placeholder='Code'
-					value={code}
-					setValue={setCode}
+					control={control}
+					rules={{ required: 'Confirmation code is required' }}
 				/>
 
 				<CustomInput 
+					name='password'
 					placeholder='Enter your new password'
-					value={newPassword}
-					setValue={setNewPassword}
-					secureTextEntry={true}
+					control={control}
+					rules={{
+						required: 'Password is required',
+						minLength: {
+							value: 5, 
+							message: 'Password should be at least 5 characters long'
+						}
+					}}
+					secureTextEntry
 				/>
 
-				<CustomButton text='Submit' onPress={onSubmitPressed} />
+				<CustomButton text='Submit' onPress={handleSubmit(onSubmitPressed)} />
 
 				<CustomButton 
 					text="Back to Sign In"

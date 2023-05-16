@@ -1,24 +1,36 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { View, ScrollView } from 'react-native'
+import { Auth } from 'aws-amplify'
 import { useNavigation } from '@react-navigation/native'
+import { useForm } from 'react-hook-form'
 import componentStyles from '../styles/componentStyles'
 import CustomInput from '../components/CustomInput'
 import CustomButton from '../components/CustomButton'
 import SocialSignInButtons from '../components/SocialSignInButtons'
 
+const EMAIL_REGEX = /^\S+@\S+\.\S+$/;
 
 const SignUpScreen = () => {
 
 	const navigation = useNavigation()
+	const { control, handleSubmit, watch } = useForm()
+	const pwd = watch('password')
 
-	const [username, setUsername] = useState('')
-	const [email, setEmail] = useState('')
-	const [phone, setPhone] = useState('')
-	const [password, setPassword] = useState('')
-	const [passwordRepeat, setPasswordRepeat] = useState('')
+	const onRegisterPressed = async (data) => {
 
-	const onRegisterPressed = () => {
-		navigation.navigate('Confirm Email')
+		const {username, password, name, phone_number } = data
+
+		try {
+			const response = await Auth.signUp({
+				username,
+				password,
+				attributes: {name, phone_number}
+			})
+
+			navigation.navigate('Confirm Email', {username})
+		}catch(error) {
+			alert(error)
+		}
 	}
 
 	const onSignInPressed = () => {
@@ -30,38 +42,68 @@ const SignUpScreen = () => {
 
 			<View style={componentStyles.container}>
 				<CustomInput 
-					placeholder='Username'
-					value={username}
-					setValue={setUsername}
+					name='name'
+					placeholder='Full Name'
+					control={control}
+					rules={{
+						required: 'Name is required',
+						minLength: {
+							value: 8, 
+							message: 'Name should be at least 8 characters long'
+						}
+					}}
 				/>
 
 				<CustomInput 
+					name='username'
 					placeholder='Email'
-					value={email}
-					setValue={setEmail}
+					control={control}
+					rules={{
+						required: 'Email is required',
+						pattern: {
+							value: EMAIL_REGEX,
+							message: 'Email is invalid'
+						}
+					}}
+					keyboardType='email-address'
 				/>
 
 				<CustomInput 
+					name='phone_number'
 					placeholder='Phone Number'
-					value={phone}
-					setValue={setPhone}
+					control={control}
+					rules={{
+						required: 'Phone is required',
+					}}
+					keyboardType='numeric'
+					inputMode='tel'
 				/>
 
 				<CustomInput 
+					name='password'
 					placeholder='Password'
-					value={password}
-					setValue={setPassword}
-					secureTextEntry={true}
+					control={control}
+					rules={{
+						required: 'Password is required',
+						minLength: {
+							value: 6, 
+							message: 'Password should be at least 5 characters long'
+						}
+					}}
+					secureTextEntry
 				/>
 
 				<CustomInput 
+					name='password-repeat'
 					placeholder='Repeat password'
-					value={passwordRepeat}
-					setValue={setPasswordRepeat}
-					secureTextEntry={true}
+					control={control}
+					rules={{
+						validate: value => value === pwd || 'Password do not match',
+					}}
+					secureTextEntry
 				/>
 
-				<CustomButton text='Sign Up' onPress={onRegisterPressed} />
+				<CustomButton text='Sign Up' onPress={handleSubmit(onRegisterPressed)} />
 
 				<SocialSignInButtons />
 

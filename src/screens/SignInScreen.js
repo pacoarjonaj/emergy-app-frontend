@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
-import { View, ScrollView, StyleSheet, Text } from 'react-native'
+import { View, ScrollView, StyleSheet } from 'react-native'
+import { Auth } from 'aws-amplify'
 import { useNavigation } from '@react-navigation/native'
+import { useForm } from 'react-hook-form'
 import CustomInput from '../components/CustomInput'
 import CustomButton from '../components/CustomButton'
 import componentStyles from '../styles/componentStyles'
@@ -10,13 +12,25 @@ import SocialSignInButtons from '../components/SocialSignInButtons'
 const SignInScreen = () => {
 
 	const navigation = useNavigation()
+	const [loading, setLoading] = useState(false)
+	const { control, handleSubmit, formState: {errors} } = useForm()
 
-	const [username, setUsername] = useState('')
-	const [password, setPassword] = useState('')
+	const onSignInPressed = async (data) => {
+		
+		if(loading) {
+			return;
+		}
 
+		setLoading(true)
 
-	const onSignInPressed = () => {
-		navigation.navigate('Your Account')
+		try {
+			const response = await Auth.signIn(data.username, data.password)
+			console.log(response) 
+		}catch(error) {
+			alert('Incorrect email or password')
+		}
+
+		setLoading(false)	
 	}
 
 	const onForgotPassword = () => {
@@ -32,20 +46,28 @@ const SignInScreen = () => {
 
 			<View style={componentStyles.container}>
 				<CustomInput 
-					placeholder='Username'
-					value={username}
-					setValue={setUsername}
+					name='username'
+					placeholder='Email'
+					control={control}
+					rules={{ required: 'Email is required' }}
+					keyboardType='email-address'
 				/>
 
 				<CustomInput 
+					name='password'
 					placeholder='Password'
-					value={password}
-					setValue={setPassword}
-					secureTextEntry={true}
-				/>
+					control={control}
+					rules={{
+						required: 'Password is required', 
+						minLength: {
+							value: 3, 
+							message: 'Password should be minimun 3 charachters long'
+						},
+					}}
+					secureTextEntry
+				/> 
 
-
-				<CustomButton text='Sign In' onPress={onSignInPressed} />
+				<CustomButton text={loading ? 'Loading...' : 'Sign In'} onPress={handleSubmit (onSignInPressed)} />
 
 				<CustomButton text='Forgot Password?' onPress={onForgotPassword} type='tertiary'/>
 
