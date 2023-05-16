@@ -17,17 +17,6 @@ const MethaneScreen = () => {
 	const state = useSelector(state => state)
 	const dispatch = useDispatch()
 
-	useEffect(() => {
-		navigation.setOptions({
-			headerLeft: () => (
-				<Pressable onPress={() => { navigation.navigate('Landing') }}>
-					<Ionicons name='chevron-back' size={30} color='#b0463b' style={{}} />
-				</Pressable>
-			)
-		})
-
-	}, [navigation])
-
 	const onPress = () => { 
 		// En el POST hay que comprobar que si date === null es new Date()
 		console.log('STATE ENVIADO: ')

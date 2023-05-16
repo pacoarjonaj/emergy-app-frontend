@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from '@expo/vector-icons/Ionicons'
-import IncidentListScreen from '../screens/IncidentListScreen'
-import SettingsScreen from '../screens/SettingsScreen'
+import MyNativeStackAccount from './NativeStackAccount'
 import MyNativeStackHome from './NativeStackHome'
 import MyNativeStackContacts from './NativeStackContacts'
 import MyNativeStackIncidents from './NativeStackIncidents'
+import SignInScreen from '../screens/SignInScreen'
 
 
 const tabScreenOptions = {
@@ -33,8 +33,8 @@ export default function MyTabs() {
 						iconName = focused ? 'ios-albums' : 'ios-albums-outline'
 					}else if(route.name === 'Contacts') {
 						iconName = focused ? 'ios-people' : 'ios-people-outline'
-					}else if(route.name === 'Settings') {
-						iconName = focused ? 'ios-settings' : 'ios-settings-outline'
+					}else if(route.name === 'Account') {
+						iconName = focused ? 'ios-person' : 'ios-person-outline'
 					}
 
 					return <Ionicons name={iconName} size={size} color={color} />
@@ -45,7 +45,7 @@ export default function MyTabs() {
 			<Tab.Screen name="Home" component={MyNativeStackHome} options={{headerShown: false}} />
 			<Tab.Screen name="Incidents" component={MyNativeStackIncidents} options={{headerShown: false}} />
 			<Tab.Screen name="Contacts" component={MyNativeStackContacts} options={{headerShown: false}} />
-			<Tab.Screen name="Settings" component={SettingsScreen} />
+			<Tab.Screen name="Account" component={MyNativeStackAccount} options={{headerShown: false}}/>
 		</Tab.Navigator>	
 	)
 }
