@@ -1,16 +1,20 @@
 import React, { useEffect } from 'react'
-import { FlatList, View, Text } from 'react-native'
+import { FlatList, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { useNavigation } from '@react-navigation/native'
-import SeparatorItem from '../components/SeparatorItem'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import useIncidents from '../hooks/useIncidents'
+import StyledText from '../components/StyledText'
+import SeparatorItem from '../components/SeparatorItem'
 import IncidentItem from '../components/IncidentItem'
 
 
 const IncidentListScreen = () => {
 
 	const insets = useSafeAreaInsets()
-	const incidents = useIncidents()
+	
+	const route = useRoute()
+	const {email} = route?.params
+	const incidents = useIncidents(email)
 	const navigation = useNavigation()
 
 	useEffect(() => {
@@ -20,6 +24,14 @@ const IncidentListScreen = () => {
 		})
 	}, [navigation])
 
+
+	if (incidents === null) {
+		return (
+			<View style={{ flex: 1, paddingTop: insets.top, alignItems: 'center', justifyContent: 'center' }}>
+				<StyledText>No incidents declared yet</StyledText>
+			</View>
+		)
+	}
 
 	return (
 		<View style={{ flex: 1, paddingTop: insets.top }}>

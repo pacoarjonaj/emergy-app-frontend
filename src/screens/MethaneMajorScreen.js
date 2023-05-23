@@ -19,7 +19,7 @@ const MethaneMajorScreen = () => {
 	}
 
 	const handlePress = () => {
-		dispatch(changeDeclaration({"date": pickedDate.toString(), "isMajor": true}))
+		dispatch(changeDeclaration({"date": pickedDate.toString(), "isMajor": 1}))
 	}
 
 	const buttonStyle = isMajor ? componentStyles.pressedButtonMajor : componentStyles.buttonMajor

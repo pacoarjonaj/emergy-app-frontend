@@ -1,17 +1,33 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigation } from '@react-navigation/native'
-import contacts from '../data/contacts'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import url from '../utils/url'
 
 
-const useContacts = () => {
+const useContacts = (email) => {
 
 	const navigation = useNavigation()
-	const contactList = contacts
-	const [filteredContactList, setFilteredContactList] = useState(contacts)
+	const [filteredContactList, setFilteredContactList] = useState([])
 
 	function sortListAlphabetically(list) {
 		return list.sort((a, b) => a.name.localeCompare(b.name));
 	}
+
+	const fetchContacts = async () => {
+		try{
+			const response = await fetch(`${url}/api/contacts_by_email/${email}`)
+			const data = await response.json()
+
+			setFilteredContactList(data)
+		}catch(error) {
+			throw new Error(error)
+		}
+	}
+
+	useFocusEffect(
+		React.useCallback(() => {
+			fetchContacts();
+		}, []) 
+	)
 
 	useEffect(() => {
 		navigation.setOptions({
@@ -27,18 +43,18 @@ const useContacts = () => {
 
 	const searchFilterText = (text) => {	
 		if(text !== null) {
-			const newContactList = contactList.filter(contact => {
-				const contactData = contact.name.toUpperCase() ? contact.name.toUpperCase() : ''.toUpperCase()
+			const newContactList = filteredContactList.filter(contact => {
+				const contactData = (contact.name || '').toUpperCase()
 				const textData = text.toUpperCase()
 				return contactData.indexOf(textData) > -1;
 			})
 			setFilteredContactList(newContactList)
 		}else {
-			setFilteredContactList(contactList)
+			setFilteredContactList(filteredContactList)
 		}
 	}
 
-	return sortListAlphabetically(filteredContactList)
+	return email && filteredContactList ? sortListAlphabetically(filteredContactList) : null
 
 }
 

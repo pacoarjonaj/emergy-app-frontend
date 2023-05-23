@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import HomeScreen from '../screens/HomeScreen'
+import ManualScreen from '../screens/ManualScreen'
 import MethaneScreen from '../screens/MethaneScreen'
 import MethaneAccessScreen from '../screens/MethaneAccessScreen'
 import MethaneEmergyScreen from '../screens/MethaneEmergyScreen'
@@ -11,12 +12,14 @@ import MethaneTypeScreen from '../screens/MethaneTypeScreen'
 
 
 export default function MyNativeStackHome() {
+	
 	const NativeStackHome = createNativeStackNavigator()
 
 	return (
 		<NativeStackHome.Navigator initialRouteName='Landing'>
-		  <NativeStackHome.Screen name="Landing" component={HomeScreen} options={{headerTitle: 'Home'}}/>
-		  <NativeStackHome.Screen name="Report Incident" component={MethaneScreen}/>
+			<NativeStackHome.Screen name="Landing" component={HomeScreen} options={{headerTitle: 'Home'}}/>
+			<NativeStackHome.Screen name="Emergency Manual" component={ManualScreen} options={{headerTitle: ''}}/>
+			<NativeStackHome.Screen name="Report Incident" component={MethaneScreen}/>
 			<NativeStackHome.Screen name="Major Incident" component={MethaneMajorScreen}/>
 			<NativeStackHome.Screen name="Exact Location" component={MethaneLocationScreen}/>
 			<NativeStackHome.Screen name="Type of Incident" component={MethaneTypeScreen}/>

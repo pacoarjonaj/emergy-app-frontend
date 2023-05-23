@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { FlatList, Pressable, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import SeparatorItem from '../components/SeparatorItem'
 import ContactItem from '../components/ContactItem'
@@ -11,7 +11,10 @@ import useContacts from '../hooks/useContacts'
 const ContactListScreen = () => {
 
 	const insets = useSafeAreaInsets()
-	const contacts = useContacts()
+
+	const route = useRoute()
+	const {email} = route?.params
+	const contacts = useContacts(email)
 	const navigation = useNavigation()
 
 	useEffect(() => {
@@ -25,6 +28,15 @@ const ContactListScreen = () => {
 			)
 		})
 	}, [navigation])
+
+	if (contacts === null) {
+		return (
+			<View style={{ flex: 1, paddingTop: insets.top, alignItems: 'center', justifyContent: 'center' }}>
+				<StyledText>No contacts added yet</StyledText>
+			</View>
+		)
+	}
+
 
 	return (
 		<View style={{ flex: 1, paddingTop: insets.top }}>

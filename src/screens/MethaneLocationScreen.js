@@ -43,7 +43,7 @@ const MethaneLocationScreen = () => {
 						</Pressable>
 					</View>
 
-					<View>
+					<View style={{backgroundColor: '#f4f4f4', borderRadius: 6, padding: 5}}>
 						<StyledText fontSize='medium' fontWeight='light'>{currentLocation.street}</StyledText>
 						<StyledText fontSize='medium' fontWeight='light'>{currentLocation.streetNumber}</StyledText>
 						<StyledText fontSize='medium' fontWeight='light'>{currentLocation.postalCode}</StyledText>

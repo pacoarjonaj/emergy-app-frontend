@@ -1,21 +1,37 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigation } from '@react-navigation/native'
-import incidents from '../data/incidents'
+import React, { useEffect, useState} from 'react'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import url from '../utils/url'
 
 
-const useIncidents = () => {
+const useIncidents = (email) => {
 
 	const navigation = useNavigation()
-	const incidentList = incidents
-	const [filteredIncidentList, setFilteredIncidentList] = useState(incidents)
+	const [filteredIncidentList, setFilteredIncidentList] = useState([])
 
-	function sortByDateDescending(list) {
+	const sortByDateDescending = (list) => {
 		return list.sort((a, b) => {
-		  const dateA = new Date(a.date);
-		  const dateB = new Date(b.date);
-		  return dateB - dateA;
+			const dateA = new Date(a.date);
+			const dateB = new Date(b.date);
+			return dateB - dateA;
 		})
 	}
+
+	const fetchIncidents = async () => {
+		try{
+			const response = await fetch(`${url}/api/incidents_by_user_email/${email}`)
+			const data = await response.json()
+
+			setFilteredIncidentList(data)
+		}catch(error) {
+			throw new Error(error)
+		}
+	}
+
+	useFocusEffect(
+		React.useCallback(() => {
+			fetchIncidents();
+		}, []) 
+	)
 
 	useEffect(() => {
 		navigation.setOptions({
@@ -31,18 +47,18 @@ const useIncidents = () => {
 
 	const searchFilterText = (text) => {	
 		if(text !== null) {
-			const newIncidentList = incidentList.filter(incident => {
-				const incidentData = incident.street.toUpperCase() ? incident.street.toUpperCase() : ''.toUpperCase()
+			const newIncidentList = filteredIncidentList.filter(incident => {
+				const incidentData = incident.location && incident.location.toUpperCase()
 				const textData = text.toUpperCase()
 				return incidentData.indexOf(textData) > -1;
 			})
 			setFilteredIncidentList(newIncidentList)
 		}else {
-			setFilteredIncidentList(incidentList)
+			setFilteredIncidentList(filteredIncidentList)
 		}
 	}
 
-	return sortByDateDescending(filteredIncidentList)
+	return email && filteredIncidentList ? sortByDateDescending(filteredIncidentList) : null
 
 }
 

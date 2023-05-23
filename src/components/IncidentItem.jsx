@@ -8,13 +8,6 @@ const incidentItem = ({ incident_id, ...props }) => {
 
 	const navigation = useNavigation()
 
-	function formatDate(date) {
-		const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-		const formattedDate = date.toLocaleDateString('en-US', options);
-		return formattedDate;
-	}
-
-
 	return (
 		<Pressable>
 			<View key={incident_id} style={styles.container}>
@@ -23,7 +16,7 @@ const incidentItem = ({ incident_id, ...props }) => {
 				</View>
 
 				<View style={{paddingVertical: 5}}>
-					<StyledText style={{ paddingVertical: 2 }}>{props.street}, {props.postalCode}</StyledText>
+					<StyledText style={{ paddingVertical: 2 }}>{props.location}</StyledText>
 				</View>
 
 				<View>

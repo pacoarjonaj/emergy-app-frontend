@@ -29,8 +29,19 @@ const componentStyles = {
 		flex: 1, 
 		flexDirection: 'column', 
 		alignItems: 'center',
-		paddingTop: 6,
 		paddingHorizontal: 4
+	},
+	containerAccount: {
+		flex:1, 
+		alignItems: 'center', 
+		paddingHorizontal: 20, 
+		paddingVertical: 50
+	},
+	containerManual: {
+		flex:1, 
+		alignItems: 'center', 
+		paddingHorizontal: 20, 
+		paddingVertical: 10
 	},
 	methaneContainer: {
 		flex: 1, 

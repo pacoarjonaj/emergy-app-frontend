@@ -1,12 +1,15 @@
 import React from 'react'
-import { View, ScrollView } from 'react-native'
+import { View, ScrollView, SafeAreaView } from 'react-native'
 import { Auth } from 'aws-amplify'
 import { useNavigation } from '@react-navigation/native'
 import { useForm } from 'react-hook-form'
 import componentStyles from '../styles/componentStyles'
+import StyledText from '../components/StyledText'
 import CustomInput from '../components/CustomInput'
 import CustomButton from '../components/CustomButton'
 import SocialSignInButtons from '../components/SocialSignInButtons'
+import url from '../utils/url'
+
 
 const EMAIL_REGEX = /^\S+@\S+\.\S+$/;
 
@@ -28,8 +31,28 @@ const SignUpScreen = () => {
 			})
 
 			navigation.navigate('Confirm Email', {username})
+
+			const postResponse = await fetch(`${url}/api/users`, {
+				method: 'POST',
+				headers: {
+				  'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					name: name,
+					email: username,
+					number: phone_number
+				})
+			})
+
+			if (postResponse.ok) {
+				console.log('Datos enviados correctamente');
+			}else {
+				console.log('Error al enviar los datos');
+			}
+			
 		}catch(error) {
 			alert(error)
+			throw new Error(error)
 		}
 	}
 
@@ -40,7 +63,9 @@ const SignUpScreen = () => {
 	return (
 		<ScrollView showsVerticalScrollIndicator={false}>
 
-			<View style={componentStyles.container}>
+			<View style={componentStyles.containerAccount}>
+				<StyledText fontSize='xlarge' fontWeight='semibold' style={{margin: 10}}>Create an account</StyledText>
+
 				<CustomInput 
 					name='name'
 					placeholder='Full Name'

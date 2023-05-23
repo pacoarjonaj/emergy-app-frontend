@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
 	colorWhite: {
 		color: theme.colors.white
 	},
+	colorRed: {
+		color: 'red'
+	},
 	xsmall: {
 		fontSize: theme.fontSizes.xsmall
 	},
@@ -61,6 +64,7 @@ export default function StyledText ({align, children, color, fontSize, fontWeigh
 		color === 'colorPrimary' && styles.colorPrimary,
 		color === 'colorSeconadry' && styles.colorSecondary,
 		color === 'colorWhite' && styles.colorWhite,
+		color === 'colorRed' && styles.colorRed,
 		fontSize === 'xsmall' && styles.xsmall,
 		fontSize === 'small' && styles.small,
 		fontSize === 'medium' && styles.medium,

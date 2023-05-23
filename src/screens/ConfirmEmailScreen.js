@@ -4,6 +4,7 @@ import { Auth } from 'aws-amplify'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { useForm } from 'react-hook-form'
 import componentStyles from '../styles/componentStyles'
+import StyledText from '../components/StyledText'
 import CustomInput from '../components/CustomInput'
 import CustomButton from '../components/CustomButton'
 
@@ -42,7 +43,8 @@ const ConfirmEmailScreen = () => {
 	return (
 		<ScrollView showsVerticalScrollIndicator={false}>
 
-			<View style={componentStyles.container}>
+			<View style={componentStyles.containerAccount}>
+				<StyledText fontSize='xlarge' fontWeight='semibold' style={{margin: 10}}>Confirm your email</StyledText>
 
 				<CustomInput 
 					name='username'

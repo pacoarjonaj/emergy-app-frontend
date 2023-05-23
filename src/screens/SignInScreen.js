@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form'
 import CustomInput from '../components/CustomInput'
 import CustomButton from '../components/CustomButton'
 import componentStyles from '../styles/componentStyles'
+import StyledText from '../components/StyledText'
 import SocialSignInButtons from '../components/SocialSignInButtons'
 
 
@@ -20,7 +21,6 @@ const SignInScreen = () => {
 		if(loading) {
 			return;
 		}
-
 		setLoading(true)
 
 		try {
@@ -44,7 +44,9 @@ const SignInScreen = () => {
 	return (
 		<ScrollView showsVerticalScrollIndicator={false}>
 
-			<View style={componentStyles.container}>
+			<View style={componentStyles.containerAccount}>
+				<StyledText fontSize='xlarge' fontWeight='semibold' style={{margin: 10}}>Sign In</StyledText>
+
 				<CustomInput 
 					name='username'
 					placeholder='Email'

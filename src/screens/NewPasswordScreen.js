@@ -4,6 +4,7 @@ import { Auth } from 'aws-amplify'
 import { useNavigation } from '@react-navigation/native'
 import { useForm } from 'react-hook-form'
 import componentStyles from '../styles/componentStyles'
+import StyledText from '../components/StyledText'
 import CustomInput from '../components/CustomInput'
 import CustomButton from '../components/CustomButton'
 
@@ -29,7 +30,8 @@ const NewPasswordScreen = () => {
 	return (
 		<ScrollView showsVerticalScrollIndicator={false}>
 
-			<View style={componentStyles.container}>
+			<View style={componentStyles.containerAccount}>
+				<StyledText fontSize='xlarge' fontWeight='semibold' style={{margin: 10}}>Reset your password</StyledText>
 
 				<CustomInput 
 					name='username'

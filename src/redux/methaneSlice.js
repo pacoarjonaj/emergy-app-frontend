@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
 	date: null,
-	isMajor: false,
+	isMajor: 0,
 	street: null,
 	streetNumber: null,
 	postalCode: null,
@@ -18,7 +18,7 @@ const initialState = {
 	servicesDescription: null,
 	sanitary: 0,
 	firefighting: 0,
-	rescue: 0,
+	rescue: 0
 };
 
 export const methaneSlice = createSlice({

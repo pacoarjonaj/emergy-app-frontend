@@ -19,6 +19,7 @@ const tabScreenOptions = {
 
 
 export default function MyTabs() {
+	
 	const Tab = createBottomTabNavigator()
 
 	return (

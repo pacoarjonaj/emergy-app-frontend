@@ -1,21 +1,85 @@
-import React from 'react'
-import { Button, View } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+import React, { useEffect, useState } from 'react'
+import { Button, StyleSheet, Text, View } from 'react-native'
+import { Auth } from 'aws-amplify'
 import componentStyles from '../styles/componentStyles'
+import StyledText from '../components/StyledText'
 
 const AccountScreen = () => {
 
-	const navigation = useNavigation()
+	const [user, setUser] = useState(null)
+
+	useEffect(() => {
+		// Usamos este metodo porque ya está la sesion iniciada
+		const fetchUserName = async () => {
+			try {
+				const user = await Auth.currentUserInfo();
+				setUser(user.attributes)
+			}catch(error) {
+				return 'Anonymous'
+			}
+		}
+
+		fetchUserName()
+	}, [])
+
+	const signOut = () => {
+		Auth.signOut()
+	}
 
 	return (
-		<View style={componentStyles.container}>
-			<Button title='Sign In' onPress={() => { navigation.navigate('Sign In') }} />
-			<Button title='Sign Up' onPress={() => { navigation.navigate('Sign Up') }} />
-			<Button title='Confirm Email' onPress={() => { navigation.navigate('Confirm Email') }} />
-			<Button title='Reset your password' onPress={() => { navigation.navigate('Reset your password') }} />
-			<Button title='New password' onPress={() => { navigation.navigate('New password') }} />
+		<View style={styles.container}>
+
+			{user ? (
+				<>
+					<StyledText fontSize="xlarge" fontWeight="semibold" style={styles.title}>Your account:</StyledText>
+
+					<StyledText fontSize='large' fontWeight='bold' style={styles.label}>Name:</StyledText>
+					<StyledText style={styles.text}>{user.name}</StyledText>
+	
+					<StyledText fontSize='large' fontWeight='bold' style={styles.label}>Email:</StyledText>
+					<StyledText style={styles.text}>{user.email}</StyledText>
+	
+					<StyledText fontSize='large' fontWeight='bold' style={styles.label}>Phone Number:</StyledText>
+					<StyledText style={styles.text}>{user.phone_number}</StyledText>
+
+					<Text onPress={signOut} style={{ color:'red', fontSize: 20 }}>Sign Out</Text>
+				</>
+			) : (
+				<View style={styles.loadingContainer}>
+					<StyledText fontSize='xlarge'>...</StyledText>
+				</View>	
+			)}
+
 		</View>
 	)
 }
+
+const styles = StyleSheet.create({
+	container: {
+	  flex: 1,
+	  alignItems: 'center',
+	  justifyContent: 'center',
+	  padding: 20,
+	},
+	title: {
+	  marginVertical: 10,
+	},
+	label: {
+	  marginBottom: 5,
+	},
+	text: {
+	  marginBottom: 15,
+	},
+	signOutText: {
+	  color: 'red',
+	  fontSize: 20,
+	  marginTop: 20,
+	},
+	loadingContainer: {
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center'
+	},
+  });
 
 export default AccountScreen
