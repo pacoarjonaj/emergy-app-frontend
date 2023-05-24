@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, StyleSheet, Text, TextInput } from 'react-native'
 import { Controller } from 'react-hook-form'
 import theme from '../styles/theme'
 
 
 const CustomInput = ({ control, name, placeholder, rules = {}, inputMode, keyboardType, secureTextEntry }) => {
-	
+
+	const [borderColor, setBorderColor] = useState(theme.colors.gray)
+	const [borderWidth, setBorderWidth] = useState(1)
+
+	const handleOnFocus = () => {
+		setBorderColor('#7c7c7c')
+		setBorderWidth(2)
+	}
+
 	return (
 		<Controller
 			control={control}
@@ -13,11 +21,16 @@ const CustomInput = ({ control, name, placeholder, rules = {}, inputMode, keyboa
 			rules={rules}
 			render={({field: {value, onChange, onBlur}, fieldState: {error}}) => (
 				<>
-					<View style={[styles.container, {borderColor: error ? 'red' : theme.colors.gray }]}>
+					<View style={[styles.container, {borderColor: error ? 'red' : borderColor, borderWidth: borderWidth }]}>
 						<TextInput 
 							value={value} 
 							onChangeText={onChange} 
-							onBlur={onBlur} 
+							onFocus={handleOnFocus}
+							onBlur={() => {
+								setBorderColor(theme.colors.gray)
+								setBorderWidth(1)
+								onBlur()
+							}} 
 							placeholder={placeholder}
 							style={styles.input}
 							inputMode={inputMode}
@@ -38,8 +51,6 @@ const styles = StyleSheet.create({
 	container: {
 		backgroundColor: 'white',
 		width: '80%',
-		borderColor: theme.colors.gray,
-		borderWidth: 1,
 		borderRadius: 6,
 		paddingHorizontal: 10,
 		paddingVertical: 15,

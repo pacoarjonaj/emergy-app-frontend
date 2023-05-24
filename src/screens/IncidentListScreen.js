@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { FlatList, View } from 'react-native'
+import { ActivityIndicator, FlatList, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import useIncidents from '../hooks/useIncidents'
@@ -25,10 +25,10 @@ const IncidentListScreen = () => {
 	}, [navigation])
 
 
-	if (incidents === null) {
+	if (incidents === null || incidents.length === 0) {
 		return (
 			<View style={{ flex: 1, paddingTop: insets.top, alignItems: 'center', justifyContent: 'center' }}>
-				<StyledText>No incidents declared yet</StyledText>
+				<StyledText>No incidents found</StyledText>
 			</View>
 		)
 	}

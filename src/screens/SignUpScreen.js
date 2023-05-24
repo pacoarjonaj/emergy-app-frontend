@@ -3,15 +3,15 @@ import { View, ScrollView, SafeAreaView } from 'react-native'
 import { Auth } from 'aws-amplify'
 import { useNavigation } from '@react-navigation/native'
 import { useForm } from 'react-hook-form'
+import EMAIL_REGEX from '../utils/email_regex'
+import url from '../utils/url'
 import componentStyles from '../styles/componentStyles'
 import StyledText from '../components/StyledText'
 import CustomInput from '../components/CustomInput'
 import CustomButton from '../components/CustomButton'
 import SocialSignInButtons from '../components/SocialSignInButtons'
-import url from '../utils/url'
 
 
-const EMAIL_REGEX = /^\S+@\S+\.\S+$/;
 
 const SignUpScreen = () => {
 

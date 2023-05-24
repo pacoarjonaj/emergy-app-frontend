@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
 import { Auth } from 'aws-amplify'
 import componentStyles from '../styles/componentStyles'
 import StyledText from '../components/StyledText'
@@ -46,7 +46,7 @@ const AccountScreen = () => {
 				</>
 			) : (
 				<View style={styles.loadingContainer}>
-					<StyledText fontSize='xlarge'>...</StyledText>
+					<ActivityIndicator/>
 				</View>	
 			)}
 
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center'
-	},
+	}
   });
 
 export default AccountScreen

@@ -32,7 +32,7 @@ export default function MyNativeStackContacts() {
 						initialParams={{ email: user.attributes.email }}
 						options={{ headerStyle: {backgroundColor: 'white'}}} />
 					<NativeStackContacts.Screen name="ContactDetailsScreen" component={ContactDetailsScreen} options={{headerTransparent: true, headerTitle: ''}}/>
-					<NativeStackContacts.Screen name="ContactAddScreen" component={ContactNewScreen} options={{ headerTitle: 'New Contact',headerStyle: {backgroundColor: 'white'} }}/>
+					<NativeStackContacts.Screen name="ContactAddScreen" component={ContactNewScreen} options={{ headerTitle: '',headerStyle: {backgroundColor: 'white'} }}/>
 				</>
 			) : (
 				<NativeStackContacts.Screen name="SignInRequiredScreen" component={SignInRequiredScreen} options={{headerShown: false}} />

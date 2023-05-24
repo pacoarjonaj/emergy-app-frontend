@@ -105,6 +105,11 @@ const componentStyles = {
 		width: '90%',
 		alignSelf: 'center',
 		backgroundColor: '#bcbcbc'
+	},
+	loadingContainer: {
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center'
 	}
 }
 

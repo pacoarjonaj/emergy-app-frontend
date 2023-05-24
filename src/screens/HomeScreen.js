@@ -16,7 +16,7 @@ const HomeScreen = () => {
 		<View style={{ flex: 1, alignItems: 'center'}}>
 
 			<FlatList 
-					style={{ paddingTop: 20}}
+					style={{}}
 					data={manuals}
 					renderItem={({ item: manual }) => (
 						<View style={{paddingVertical: 5}}>
@@ -31,10 +31,10 @@ const HomeScreen = () => {
 						</View>
 					)}
 					ListHeaderComponent={(
-						<View style={{alignItems: 'center'}}>
-							<View style={{paddingBottom: 30, width: '50%'}}>
+						<View style={{alignItems: 'center', paddingTop: 20}}>
+							<View style={{paddingBottom: 30, width: '60%'}}>
 								<TouchableOpacity style={styles.button} onPress={() => { navigation.navigate('Report Incident') }}>
-									<Ionicons name='ios-add' size={36} color='#ffffff' />
+									<StyledText color='colorWhite' fontSize='xlarge' fontWeight='semibold'>REPORT INCIDENT</StyledText>
 								</TouchableOpacity>
 							</View>
 

@@ -1,32 +1,49 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import url from '../utils/url'
+
+
+const sortListAlphabetically = (list) => {
+	
+	if (!list) {
+		return []
+	}
+
+	return list.sort((a, b) => a.name.localeCompare(b.name))
+}
 
 
 const useContacts = (email) => {
 
 	const navigation = useNavigation()
-	const [filteredContactList, setFilteredContactList] = useState([])
-
-	function sortListAlphabetically(list) {
-		return list.sort((a, b) => a.name.localeCompare(b.name));
-	}
+	const [responseOK, setResponseOK] = useState(false)
+	const [filteredContactList, setFilteredContactList] = useState(null)
+	const [originalContactList, setOriginalContactList] = useState([])
+	const [searchText, setSearchText] = useState('')
 
 	const fetchContacts = async () => {
-		try{
+		try {
 			const response = await fetch(`${url}/api/contacts_by_email/${email}`)
+
+			if (!response.ok) {
+				setResponseOK(false)
+				return
+			}
+
 			const data = await response.json()
 
+			setResponseOK(true)
+			setOriginalContactList(data)
 			setFilteredContactList(data)
-		}catch(error) {
+		} catch (error) {
 			throw new Error(error)
 		}
 	}
 
 	useFocusEffect(
 		React.useCallback(() => {
-			fetchContacts();
-		}, []) 
+			fetchContacts()
+		}, [])
 	)
 
 	useEffect(() => {
@@ -34,28 +51,35 @@ const useContacts = (email) => {
 			headerSearchBarOptions: {
 				placeholder: 'Search',
 				onChangeText: (event) => {
-					searchFilterText(event.nativeEvent.text)
+					setSearchText(event.nativeEvent.text)
 				},
-				hideWhenScrolling: false
-			}
+				hideWhenScrolling: false,
+			},
 		})
 	}, [navigation])
 
-	const searchFilterText = (text) => {	
-		if(text !== null) {
-			const newContactList = filteredContactList.filter(contact => {
+	useEffect(() => {
+		if (responseOK) {
+			searchFilterText(searchText)
+		}
+	}, [searchText])
+
+	const searchFilterText = (text) => {
+		if (text !== '') {
+			const newContactList = originalContactList.filter((contact) => {
 				const contactData = (contact.name || '').toUpperCase()
 				const textData = text.toUpperCase()
-				return contactData.indexOf(textData) > -1;
+				return contactData.indexOf(textData) > -1
 			})
 			setFilteredContactList(newContactList)
-		}else {
-			setFilteredContactList(filteredContactList)
+		} else {
+			setFilteredContactList(originalContactList)
 		}
 	}
 
-	return email && filteredContactList ? sortListAlphabetically(filteredContactList) : null
-
+	return email && filteredContactList !== null
+		? sortListAlphabetically(filteredContactList)
+		: null
 }
 
 export default useContacts

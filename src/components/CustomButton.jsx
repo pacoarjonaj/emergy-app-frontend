@@ -6,7 +6,6 @@ import StyledText from '../components/StyledText'
 
 const CustomButton = ({ bgColor, fgColor, onPress, text, type }) => {
 
-
 	return (
 		<Pressable 
 			onPress={onPress}

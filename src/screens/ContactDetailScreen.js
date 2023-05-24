@@ -42,32 +42,36 @@ const ContactDetailScreen = () => {
 		}
 	}
 
-	if (contact === null) {
-		return (
-			<View style={componentStyles.container}>
-				<ActivityIndicator />
-			</View>
-		)
-	}
-
 	return (
-		<View style={[styles.container, { paddingTop: insets.top + 50 }]}>
-			{contact && (
-				<View style={styles.contentContainer}>
-					<View>
-						<StyledText fontSize='large' fontWeight='semibold'>{contact.name}</StyledText>
-						<StyledText fontWeight='medium'>{contact.email}</StyledText>
-						<StyledText fontWeight='medium'>{contact.number}</StyledText>
+		<View style={styles.container}>
+
+			{contact ? (
+				<>
+					<View style={{alignItems: 'center'}}>
+						<StyledText fontSize="xlarge" fontWeight="semibold" style={styles.title}>Contact data:</StyledText>
+
+						<StyledText fontSize='large' fontWeight='bold' style={styles.label}>Name:</StyledText>
+						<StyledText style={styles.text}>{contact.name}</StyledText>
+
+						<StyledText fontSize='large' fontWeight='bold' style={styles.label}>Email:</StyledText>
+						<StyledText style={styles.text}>{contact.email}</StyledText>
+
+						<StyledText fontSize='large' fontWeight='bold' style={styles.label}>Phone Number:</StyledText>
+						<StyledText style={styles.text}>{contact.number}</StyledText>
 					</View>
-					<View style={styles.buttonContainer}>
-						<TouchableOpacity style={styles.button} onPress={handleSendSMS}>
-							<StyledText fontSize='large' fontWeight='semibold' color='colorWhite'>Send SMS</StyledText>
-						</TouchableOpacity>
-						<TouchableOpacity style={styles.button} onPress={handleCall}>
-							<StyledText fontSize='large' fontWeight='semibold' color='colorWhite'>Call</StyledText>
-						</TouchableOpacity>
-					</View>
-				</View>
+						<View style={styles.buttonContainer}>
+							<TouchableOpacity style={styles.button} onPress={handleSendSMS}>
+								<StyledText fontSize='large' fontWeight='semibold' color='colorWhite'>Send SMS</StyledText>
+							</TouchableOpacity>
+							<TouchableOpacity style={styles.button} onPress={handleCall}>
+								<StyledText fontSize='large' fontWeight='semibold' color='colorWhite'>Call</StyledText>
+							</TouchableOpacity>
+						</View>
+				</>
+			) : (
+				<View style={componentStyles.loadingContainer}>
+					<ActivityIndicator/>
+				</View>	
 			)}
 		</View>
 	)
@@ -78,13 +82,25 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
+		padding: 20,
 	},
-	contentContainer: {
-		alignItems: 'center',
+	title: {
+		marginVertical: 10,
+	},
+	label: {
+		marginBottom: 5,
+	},
+	text: {
+		marginBottom: 15,
+	},
+	signOutText: {
+		color: 'red',
+		fontSize: 20,
+		marginTop: 20,
 	},
 	buttonContainer: {
 		flexDirection: 'row',
-		marginTop: 20,
+		marginTop: 10,
 	},
 	button: {
 		backgroundColor: theme.colors.blue,
@@ -93,6 +109,11 @@ const styles = StyleSheet.create({
 		borderRadius: 6,
 		marginRight: 10,
 	},
+	loadingContainer: {
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center'
+	}
 })
 
 export default ContactDetailScreen

@@ -1,36 +1,49 @@
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import url from '../utils/url'
+
+
+const sortByDateDescending = (list) => {
+
+	return list.sort((a, b) => {
+		const dateA = new Date(a.date)
+		const dateB = new Date(b.date)
+		return dateB - dateA
+	})
+}
 
 
 const useIncidents = (email) => {
 
 	const navigation = useNavigation()
+	const [responseOK, setResponseOK] = useState(false)
 	const [filteredIncidentList, setFilteredIncidentList] = useState([])
-
-	const sortByDateDescending = (list) => {
-		return list.sort((a, b) => {
-			const dateA = new Date(a.date);
-			const dateB = new Date(b.date);
-			return dateB - dateA;
-		})
-	}
+	const [originalIncidentList, setOriginalIncidentList] = useState([])
+	const [searchText, setSearchText] = useState('')
 
 	const fetchIncidents = async () => {
-		try{
+		try {
 			const response = await fetch(`${url}/api/incidents_by_user_email/${email}`)
+
+			if (!response.ok) {
+				setResponseOK(false)
+				return
+			}
+
 			const data = await response.json()
 
+			setResponseOK(true)
 			setFilteredIncidentList(data)
-		}catch(error) {
+			setOriginalIncidentList(data)
+		} catch (error) {
 			throw new Error(error)
 		}
 	}
 
 	useFocusEffect(
 		React.useCallback(() => {
-			fetchIncidents();
-		}, []) 
+			fetchIncidents()
+		}, [])
 	)
 
 	useEffect(() => {
@@ -38,28 +51,33 @@ const useIncidents = (email) => {
 			headerSearchBarOptions: {
 				placeholder: 'Search by street',
 				onChangeText: (event) => {
-					searchFilterText(event.nativeEvent.text)
+					setSearchText(event.nativeEvent.text)
 				},
-				hideWhenScrolling: false
-			}
+				hideWhenScrolling: false,
+			},
 		})
 	}, [navigation])
 
-	const searchFilterText = (text) => {	
-		if(text !== null) {
-			const newIncidentList = filteredIncidentList.filter(incident => {
-				const incidentData = incident.location && incident.location.toUpperCase()
+	useEffect(() => {
+		if (responseOK) {
+			searchFilterText(searchText)
+		}
+	}, [searchText])
+
+	const searchFilterText = (text) => {
+		if (text !== '') {
+			const newIncidentList = originalIncidentList.filter((incident) => {
+				const incidentData = (incident.location || '').toUpperCase()
 				const textData = text.toUpperCase()
-				return incidentData.indexOf(textData) > -1;
+				return incidentData.indexOf(textData) > -1
 			})
 			setFilteredIncidentList(newIncidentList)
-		}else {
-			setFilteredIncidentList(filteredIncidentList)
+		} else {
+			setFilteredIncidentList(originalIncidentList)
 		}
 	}
 
-	return email && filteredIncidentList ? sortByDateDescending(filteredIncidentList) : null
-
+	return email && filteredIncidentList !== null ? sortByDateDescending(filteredIncidentList) : null
 }
 
 export default useIncidents

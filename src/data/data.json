@@ -1,6 +1,5 @@
 [
 	{
-		"manual_color": "#",
 		"manual_title": "",
 		"manual_content": [
 			{
@@ -12,64 +11,19 @@
 					{
 						"element_id": 1,
 						"text": "",
-						"type": "",
+						"type": "subsection_title",
 						"textBold": ""
 					},
 					{
 						"element_id": 2,
 						"text": "",
-						"type": "",
+						"type": "step",
 						"textBold": ""
 					},
 					{
 						"element_id": 3,
 						"text": "",
-						"type": "",
-						"textBold": ""
-					},
-					{
-						"element_id": 4,
-						"text": "",
-						"type": "",
-						"textBold": ""
-					}
-				]
-			}
-		]
-	}
-	,
-	{
-		"manual_color": "#",
-		"manual_title": "",
-		"manual_content": [
-			{
-				"section_id": 1,
-				"section_image": "",
-				"section_title": "",
-				"section_description": "",
-				"section_elements": [
-					{
-						"element_id": 1,
-						"text": "",
-						"type": "",
-						"textBold": ""
-					},
-					{
-						"element_id": 2,
-						"text": "",
-						"type": "",
-						"textBold": ""
-					},
-					{
-						"element_id": 3,
-						"text": "",
-						"type": "",
-						"textBold": ""
-					},
-					{
-						"element_id": 4,
-						"text": "",
-						"type": "",
+						"type": "substep",
 						"textBold": ""
 					}
 				]
