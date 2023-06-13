@@ -5,11 +5,11 @@ import componentStyles from '../styles/componentStyles'
 
 const SeparatorItem = () => {
 
-		return ( 
-			<View 
-				style={componentStyles.separator} 
-			/>
-		)
+	return ( 
+		<View 
+			style={componentStyles.separator} 
+		/>
+	)
 
 }
 

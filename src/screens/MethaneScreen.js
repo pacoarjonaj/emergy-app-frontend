@@ -9,7 +9,6 @@ import MethaneItem from '../components/MethaneItem'
 import SeparatorItem from '../components/SeparatorItem'
 import StyledText from '../components/StyledText'
 import url from '../utils/url'
-import useUserId from '../hooks/useUserId';
 
 
 const MethaneScreen = () => {

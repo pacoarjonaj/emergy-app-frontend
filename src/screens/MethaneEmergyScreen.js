@@ -30,15 +30,10 @@ const MethaneEmergyScreen = () => {
 			rescue: rescueNum
 		}
 
-		console.log(description)
-		console.log(res.sanitary, res.firefighting, res.rescue)
-
-		dispatch(changeService(res))
-		
+		dispatch(changeService(res))	
 	}
 
 	const buttonStyle = (servicesDescription || sanitary || firefighting || rescue) ? componentStyles.pressedButton : componentStyles.button
-
 
 	return (
 		<View style={componentStyles.container}>

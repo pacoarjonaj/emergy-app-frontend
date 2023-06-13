@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { View, ScrollView } from 'react-native'
 import { Auth } from 'aws-amplify'
 import { useNavigation } from '@react-navigation/native'
@@ -12,7 +12,7 @@ import CustomButton from '../components/CustomButton'
 const ForgotPasswordScreen = () => {
 
 	const navigation = useNavigation()
-	const { control, handleSubmit, watch } = useForm()
+	const { control, handleSubmit } = useForm()
 
 	const onSendPressed = async (data) => {
 		try {

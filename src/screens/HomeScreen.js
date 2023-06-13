@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
 import { FlatList, View, StyleSheet, TouchableOpacity, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import Ionicons from '@expo/vector-icons/Ionicons'
 import StyledText from '../components/StyledText'
 import useManuals from '../hooks/useManuals'
-import theme from '../styles/theme'
 
 
 const HomeScreen = () => {
@@ -51,8 +49,6 @@ const HomeScreen = () => {
 
 
 const styles = StyleSheet.create({
-	containerList: {
-	},
 	pressable: {
 		paddingVertical: 10,
 		paddingHorizontal: 10,

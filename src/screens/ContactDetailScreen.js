@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { ActivityIndicator, Linking, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useRoute } from '@react-navigation/native'
 import url from '../utils/url'
+import theme from '../styles/theme'
 import componentStyles from '../styles/componentStyles'
 import StyledText from '../components/StyledText'
-import theme from '../styles/theme'
 
 
 const ContactDetailScreen = () => {
 
-	const insets = useSafeAreaInsets()
 	const route = useRoute()
 	const { id } = route.params
 	const [contact, setContact] = useState(null)
@@ -48,7 +46,7 @@ const ContactDetailScreen = () => {
 			{contact ? (
 				<>
 					<View style={{alignItems: 'center'}}>
-						<StyledText fontSize="xlarge" fontWeight="semibold" style={styles.title}>Contact data:</StyledText>
+						<StyledText fontSize="xlarge" fontWeight="semibold" style={styles.title}>Contact info:</StyledText>
 
 						<StyledText fontSize='large' fontWeight='bold' style={styles.label}>Name:</StyledText>
 						<StyledText style={styles.text}>{contact.name}</StyledText>
@@ -93,11 +91,6 @@ const styles = StyleSheet.create({
 	text: {
 		marginBottom: 15,
 	},
-	signOutText: {
-		color: 'red',
-		fontSize: 20,
-		marginTop: 20,
-	},
 	buttonContainer: {
 		flexDirection: 'row',
 		marginTop: 10,
@@ -108,11 +101,6 @@ const styles = StyleSheet.create({
 		paddingVertical: 10,
 		borderRadius: 6,
 		marginRight: 10,
-	},
-	loadingContainer: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center'
 	}
 })
 

@@ -45,7 +45,7 @@ const AccountScreen = () => {
 					<Text onPress={signOut} style={{ color:'red', fontSize: 20 }}>Sign Out</Text>
 				</>
 			) : (
-				<View style={styles.loadingContainer}>
+				<View style={componentStyles.loadingContainer}>
 					<ActivityIndicator/>
 				</View>	
 			)}
@@ -74,11 +74,6 @@ const styles = StyleSheet.create({
 	  color: 'red',
 	  fontSize: 20,
 	  marginTop: 20,
-	},
-	loadingContainer: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center'
 	}
   });
 

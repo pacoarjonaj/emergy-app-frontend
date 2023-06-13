@@ -24,8 +24,9 @@ const SignInScreen = () => {
 		setLoading(true)
 
 		try {
+			
 			const response = await Auth.signIn(data.username, data.password)
-			console.log(response) 
+
 		}catch(error) {
 			alert('Incorrect email or password')
 		}
@@ -86,10 +87,5 @@ const SignInScreen = () => {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-
-	}
-})
 
 export default SignInScreen

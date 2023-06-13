@@ -30,11 +30,7 @@ const MethaneSeverityScreen = () => {
 			fatalities: fatalitiesNum
 		}
 
-		console.log(description)
-		console.log(res.adults, res.children, res.fatalities)
-
-		dispatch(changeSeverity(res))
-		
+		dispatch(changeSeverity(res))		
 	}
 
 	const buttonStyle = (casualtiesDescription || adults || children || fatalities) ? componentStyles.pressedButton : componentStyles.button

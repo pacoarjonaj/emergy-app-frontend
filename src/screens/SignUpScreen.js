@@ -43,12 +43,6 @@ const SignUpScreen = () => {
 					number: phone_number
 				})
 			})
-
-			if (postResponse.ok) {
-				console.log('Datos enviados correctamente');
-			}else {
-				console.log('Error al enviar los datos');
-			}
 			
 		}catch(error) {
 			alert(error)

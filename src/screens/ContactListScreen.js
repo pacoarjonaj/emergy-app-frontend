@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
-import { ActivityIndicator, FlatList, Pressable, View } from 'react-native'
+import { FlatList, Pressable, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import SeparatorItem from '../components/SeparatorItem'
 import StyledText from '../components/StyledText'
-import componentStyles from '../styles/componentStyles'
 import ContactItem from '../components/ContactItem'
 import useContacts from '../hooks/useContacts'
 
