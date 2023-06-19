@@ -17,8 +17,6 @@ const MethaneTypeScreen = () => {
 	const dispatch = useDispatch()
 
 	const buttonStyle = type ? componentStyles.pressedButton : componentStyles.button
-
-	console.log(types)
 	
 	return (
 		<View style={{ justifyContent: 'space-around', ...componentStyles.container}}>

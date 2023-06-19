@@ -30,7 +30,7 @@ const ManualScreen = () => {
 
 								{/* IMAGEN SECCION */}
 								{section.section_image && <Image source={{ uri: section.section_image }}
-								style={data.manual_id === 5 ? manualStyles.manualImageEarthquake : manualStyles.manualImage} />}
+								style={data.manual_id === 5 || data.manual_id === 14 || data.manual_id === 19 ? manualStyles.manualImageEarthquake : manualStyles.manualImage} />}
 
 								{/* DESCRIPCION SECCION */}
 								{section.section_description && <StyledText style={manualStyles.sectionDescription}>{section.section_description}</StyledText>}
