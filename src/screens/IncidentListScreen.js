@@ -11,7 +11,6 @@ import IncidentItem from '../components/IncidentItem'
 const IncidentListScreen = () => {
 
 	const insets = useSafeAreaInsets()
-	
 	const route = useRoute()
 	const {email} = route?.params
 	const incidents = useIncidents(email)

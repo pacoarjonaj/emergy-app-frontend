@@ -12,7 +12,6 @@ import useContacts from '../hooks/useContacts'
 const ContactListScreen = () => {
 
 	const insets = useSafeAreaInsets()
-
 	const route = useRoute()
 	const {email} = route?.params
 	const contacts = useContacts(email)
